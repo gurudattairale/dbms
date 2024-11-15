@@ -1,0 +1,27 @@
+3.    MongoDB – Map-reduces operations:
+Implement Map reduces operation with suitable example using MongoDB.
+
+ db.createCollection("Map")
+
+db.Map.insert({rollno:1, department:'Computer', fees:60000});
+
+db.Map.insert({rollno:1, department:'IT', fees:60000});
+
+db.Map.insert({rollno:1, department:'Computer', fees:60000});
+
+db.Map.insert({rollno:2, department:'IT', fees:60000});
+
+db.Map.insert({rollno:1, department:'Chemical', fees:60000});
+
+db.Map.insert({rollno:3, department:'Computer', fees:4000});
+
+db.Map.insert({rollno:1, department:'IT', fees:60000});
+
+db.Map.insert({rollno:2, department:'Chemical', fees:60000});
+
+db.Map.insert({rollno:1, department:'Instrumentation', fees:60000});
+
+db.Map.insert({rollno:1, department:'ETC', fees:60000});
+
+ db.Map.aggregate([{$match:{department:"Computer"}},{$group:{_id:"$rollno",total:{$sum:"$fees"}}}])
+

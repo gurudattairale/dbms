@@ -1,0 +1,17 @@
+3.    MongoDB – Map-reduces operations:
+Implement Map reduces operation with suitable example using MongoDB.
+
+> db.createCollection("mapreduce")
+> db.mapreduce.insert({cust_id:1,status:'A',amount:400})
+> db.mapreduce.insert({cust_id:2,status:'A',amount:400})
+> db.mapreduce.insert({cust_id:1,status:'B',amount:500})
+> db.mapreduce.insert({cust_id:1,status:'B',amount:400})
+> db.mapreduce.insert({cust_id:4,status:'B',amount:400})
+> db.mapreduce.insert({cust_id:4,status:'A',amount:400})
+> db.mapreduce.insert({cust_id:1,status:'A',amount:400})
+> db.mapreduce.insert({cust_id:4,status:'A',amount:600})
+> db.mapreduce.insert({cust_id:4,status:'B',amount:600})
+> db.mapreduce.insert({cust_id:1,status:'A',amount:600})
+> db.mapreduce.find().pretty()
+> db.mapreduce.aggregate([{$match:{status:"A"}},{$group:{_id:"$cust_id",total:{$sum:"$amount"}}}])
+

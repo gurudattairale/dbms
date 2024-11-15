@@ -1,0 +1,175 @@
+create database college;
+
+use college;
+
+create table staff(
+	staffid int auto_increment,
+	name varchar(100) not null,
+	salary int not null,
+	primary key(staffid)
+);
+
+insert into staff (name, salary) values('Mr. M. R. Kharde', 25000);
+
+insert into staff (name, salary) values('Dr. S. K. Korde', 50000);
+
+insert into staff (name, salary) values('Mr. S. D. Jondhale', 70000);
+
+insert into staff (name, salary) values('Mr. G. B. Kote', 25000);
+
+select * from staff;
+
+create table subjects(
+	subjectid int auto_increment,
+	name varchar(100) not null,
+	staffid int not null,
+	primary key(subjectid),
+	foreign key(staffid)
+	references staff(staffid)
+);
+
+insert into subjects (name, staffid) values('DBMS', 1);
+
+insert into subjects (name, staffid) values('DM', 2);
+
+insert into subjects (name, staffid) values('DELD', 3);
+
+select * from subjects;
+
+create table student(
+	rollno int auto_increment,
+	name varchar(100) not null,
+	class varchar(50) not null,
+	subjectid int not null,
+	foreign key(subjectid)
+	references subjects(subjectid),
+	primary key(rollno)
+);
+
+insert into student (name, class, subjectid) values ('Jagdhane Pratiksha', 'T.E.', 1);
+
+insert into student (name, class, subjectid) values ('Sawant Prachi', 'T.E.', 2);
+
+insert into student (name, class, subjectid) values ('Thorat Vaishnavi', 'T.E.', 3);
+
+insert into student (name, class, subjectid) values ('Vishwasrao Vaishnavi', 'T.E.', 1);
+
+insert into student (name, class, subjectid) values ('Khose Shubhangi', 'T.E.', 1);
+
+select * from student;
+
+Aggregate functions():
+-------------------------------------------------------------------------------------------------------------------------------------
+
+select SUM(salary) from staff;
+
+select MIN(salary) from staff;
+
+select MAX(salary) from staff;
+
+select AVG(salary) from staff;
+
+select COUNT(staffid) from staff;
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Group by:
+The GROUP BY Statement in SQL is used to arrange identical data into groups with the help of some functions. i.e if a particular column has same values in different rows then it will arrange these rows in a group.
+
+Important Points:
+
+GROUP BY clause is used with the SELECT statement.
+In the query, GROUP BY clause is placed after the WHERE clause.
+In the query, GROUP BY clause is placed before ORDER BY clause if used any.
+------------------------------------------------------------------------------------------------------------------------------------
+
+select name, salary from staff group by name;
+
+select name, salary from staff group by salary;
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+Having clause:
+We know that WHERE clause is used to place conditions on columns but what if we want to place conditions on groups?
+
+This is where HAVING clause comes into use. We can use HAVING clause to place conditions to decide which group will be the part of final result-set. Also we can not use the aggregate functions like SUM(), COUNT() etc. with WHERE clause. So we have to use HAVING clause if we want to use any of these functions in the conditions.
+
+select name, salary from staff group by name having salary>40000;
+
+select name, salary from staff group by name having salary<25000;
+
+select name, salary from staff group by name having salary<=25000;
+
+select name, salary from staff group by name having SUM(salary)<50000;
+
+select name, salary from staff group by name having SUM(salar
+y)>50000;
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+ORDER BY:-
+
+The ORDER BY statement in sql is used to sort the fetched data in either ascending or descending according to one or more columns.
+
+By default ORDER BY sorts the data in ascending order.
+We can use the keyword DESC to sort the data in descending order and the keyword ASC to sort in ascending order.
+------------------------------------------------------------------------------------------------------------------------------------
+select * from student order by rollno desc;
+
+select * from student order by rollno asc;
+
+------------------------------------------------------------------------------------------------------------------------------------
+The following statement uses the group by clause with the count() function to get the number of students in each subjects:
+------------------------------------------------------------------------------------------------------------------------------------
+
+select 
+	subjectid, 
+	count(rollno) 
+from 
+	student 
+group by
+	subjectid
+order by
+	subjectid;
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+In this example:
+
+First, the group by clause divides the student by subjects.
+Then, the count() function is applied to each subjects to return the number of student.
+
+------------------------------------------------------------------------------------------------------------------------------------
+To make the output more meaningful, you can join the student table with the subjects table:
+------------------------------------------------------------------------------------------------------------------------------------
+
+select
+	subjects.name,
+	count(rollno) student_rollno
+from
+	student
+inner join subjects using (subjectid)
+group by
+	subjects.name
+order by 
+	subjects.name;
+
+----------------------------------------------------------------------------------------------------
+The following example uses the having clause to find subjects that have more than 3 students:
+----------------------------------------------------------------------------------------------------
+
+select
+	subjects.name subjectname,
+	count(rollno) student_rollno
+from
+	student
+inner join subjects
+	using (subjectid)
+group by
+	(subjects.name)
+having
+	count(rollno) > 2
+order by
+	student_rollno desc;
+
+

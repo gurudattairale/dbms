@@ -1,0 +1,3 @@
+[root@localhost comp]# sudo systemctl start mongod
+[root@localhost comp]# mongo
+

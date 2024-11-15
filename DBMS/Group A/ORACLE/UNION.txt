@@ -1,0 +1,65 @@
+SET Operators in SQL:-
+
+SET operators are special type of operators which are used to combine the result of two queries.
+
+Operators covered under SET operators are:
+
+    UNION
+    UNION ALL
+    
+
+1. UNION:
+
+    UNION will be used to combine the result of two select statements.
+    Duplicate rows will be eliminated from the results obtained after performing the UNION operation.
+
+create database a;
+
+use a;
+
+create table staff(staffid int,
+	name varchar(100) not null,
+	salary int not null);
+
+
+insert into staff (staffid, name, salary) values(1, 'Mr. M. R. Kharde', 25000);
+
+insert into staff (staffid, name, salary) values(2, 'Dr. S. K. Korde', 50000);
+
+insert into staff (staffid, name, salary) values(3, 'Mr. S. D. Jondhale', 70000);
+
+insert into staff (staffid, name, salary) values(4, 'Mr. G. B. Kote', 25000);
+
+insert into staff (staffid, name, salary) values(4, 'Mr. G. B. Kote', 25000);
+
+select * from staff;
+
+create table subjects(
+	subjectid int,
+	name varchar(100) not null,
+	staffid int not null
+);
+
+insert into subjects (subjectid, name, staffid) values(1, 'DBMS', 1);
+
+insert into subjects (subjectid, name, staffid) values(2, 'DM', 2);
+
+insert into subjects (subjectid, name, staffid) values(3, 'DELD', 3);
+
+insert into subjects (subjectid, name, staffid) values(3, 'DELD', 3);
+
+select * from subjects;
+
+
+SELECT * FROM staff UNION SELECT *FROM subjects; 
+
+
+2. UNION ALL
+
+    This operator combines all the records from both the queries.
+    Duplicate rows will be not be eliminated from the results obtained after performing the UNION ALL operation.
+
+SELECT * FROM staff UNION ALL SELECT *FROM subjects; 
+
+
+

@@ -1,0 +1,15 @@
+-- Create the students table
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    age INT
+);
+-- Create an index on last_name for faster searches
+CREATE INDEX idx_last_name ON students(last_name);
+
+-- Create a view to show student information (full name and age)
+create view student_info as
+  2  select
+  3      student_id,last_name
+  4  from students;

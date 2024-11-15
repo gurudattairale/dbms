@@ -1,0 +1,65 @@
+use mydb
+
+show dbs
+
+db.createCollection("employeeTable")
+
+db.employeeTable.insert({_id : 1, firstName:"ankit"})
+db.employeeTable.insert({_id : 2, firstName:"ankit", salary : 1000 })
+db.employeeTable.insert({_id : 3, firstName:"sam", salary : 2000 })
+db.employeeTable.insert({_id : 4, firstName:"neh", salary : 3000 })
+
+
+db.employeeTable.find()
+
+
+db.employeeTable.find().pretty()
+
+db.employeeTable.find().limit(2)
+
+
+db.employeeTable.find().skip(1)
+
+db.employeeTable.find().skip(1).limit(2)
+
+db.employeeTable.find( { salary : {$gte : 1000} })
+
+db.employeeTable.find( { salary : {$gte : 1000} }).limit(2)
+
+db.employeeTable.update({_id:1}, {$set:{firstName:"ankit_UPDATED"}})
+
+db.employeeTable.find()
+
+db.employeeTable.update({firstName:"sam"}, {$set:{empno:22}} )
+
+db.employeeTable.find()
+
+db.employeeTable.remove ({_id:1})
+
+db.employeeTable.find()
+
+db.employeeTable.remove ({firstName:"sam"})
+
+db.employeeTable.find()
+
+db.employeeTable.remove({})
+
+db.employeeTable.find()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,108 @@
+[comp@localhost ~]$ su
+
+[root@localhost comp]# systemctl start mongod
+
+[root@localhost comp]# mongo
+
+> db
+
+>  show dbs
+
+> use mydb
+
+> show dbs
+
+1) To drop Database:-
+
+> db.dropDatabase()
+
+2) To create Collection:-
+
+> db.createCollection("Student");
+
+> db
+
+3) TO use collection Student
+
+> use Student
+
+4) To insert data in document
+> db.Student.insert({rollno:1,name:"pooja",city:"loni"});
+
+5) To find document in the collection
+
+> db.Student.find()
+
+6) To insert data in document
+
+> db.Student.insert({rollno:2,firstname:"Pallavi",middlename:"Sunil", lastname:"Lagad", rollno:3, firstname:"Divya",middlename:"Pralhad", lastname:"Dokhe"})
+
+> db.Student.find()
+
+7) To insert data in document as an array:
+> db.Student.insert({rollno:"4", name:"Prajakta Dighe",
+course:{ 
+coursename:"Computer Engineering",
+class:"T.E."},
+address:{
+city:"Loni",
+state:"Maharashtra"}})
+
+> db.student.insert({rollno:3, name:"Dahatonde Rutuja", 
+ education:[
+ {
+year:2022,
+  class:"TE",
+ college:"PREC, LONI"
+  },
+{
+ year:2023,
+ class:"BE",
+  college:"PREC, loni"
+  }
+ ]})
+> db.student.find()
+
+
+8) To find data in document:-
+
+> db.Student.find()
+
+9) To find specific data in a document:-
+
+> db.Student.find({"rollno":2})
+
+10) To update specific data in the document:-
+
+> db.Student.update({"rollno":1}, {"$set":{"name":"Puja"}})
+
+
+11) To delete Collection:-
+> db.dropDatabase(student)
+
+12) To drop Collection:-
+
+> db.Student.drop()
+
+
+13) Copy the complete thing and paste it in mongodb prompt:
+
+db.stud.insert({rollno:2,name:'pallavi',city:'rahuri'});
+db.stud.insert({rollno:3,name:'hema',city:'ashwavi'});
+db.stud.insert({rollno:4,name:'pallavi',city:'rahata'});
+db.stud.insert({rollno:5,name:'dhano',city:'pune'});
+db.stud.insert({rollno:6,name:'sai',city:'mumbai'});
+db.stud.insert({rollno:7,name:'om',city:'nagar'});
+db.stud.insert({rollno:8,name:'pooja123',city:'goa'});
+db.stud.insert({rollno:9,name:'jay',city:'USA'});
+db.stud.insert({rollno:10,name:'jaydev',city:'rahuri'});
+
+14) To remove document in a collection
+db.stud.remove({"rollno":10})
+
+15) USe of pretty
+db.stud.find().pretty()
+
+
+
+

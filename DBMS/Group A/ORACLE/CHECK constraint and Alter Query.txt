@@ -1,0 +1,16 @@
+CHECK constraints can be added to check the values for a given column. This can be used to allow only a specific set of valid values for a column. In the following example, CHECK constraints are added to limit the valid values for the sex column and to check if the salary is greater than 10,000 (be sure to DROP TABLE employee before you try the next example).
+
+
+CREATE TABLE employee (employeeid VARCHAR2(9) NOT NULL, fname VARCHAR2(8), lname VARCHAR2(8), bdate DATE, address VARCHAR2(27), sex VARCHAR2(1) CONSTRAINT ck_sex CHECK (sex IN ('M', 'F')), salary NUMBER(7) NOT NULL CONSTRAINT ck_salary CHECK (salary > 10000));
+
+The CHECK constraints are activated when inserting a new row or when updating existing data. In the following example, the value given for sex is ‘m’:
+
+SQL> insert into employee  values  ('123456789', 'Joe', 'Smith', '01-JUN-45', '123 Smith St.', 'm', 45000);
+
+The ALTER TABLE command can be used to add a new column to an existing table or to change the data type of an existing column. The following examples add a new column manager to an existing table named emp_department_1 and then modify the data type of the fname column.
+
+SQL> ALTER TABLE employee ADD (mobilenumber number(13)) ;
+
+SQL> ALTER TABLE employee MODIFY (mobilenumber VARCHAR2(15));
+
+SQL> alter table employee drop column salary;

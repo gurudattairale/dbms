@@ -1,0 +1,34 @@
+
+
+create table student1(rollno number(2) not null, name varchar2(35) not null, course varchar2(60) not null);
+
+alter table student1 add(class varchar2(6));
+
+insert into student1 values(1, 'Mayuri Kakade', 'Computer Engineering', 'TE');
+
+insert into student1 values(2, 'Vidya Kandekar', 'Computer Engineering', 'TE');
+
+insert into student1 values(3, 'Aditi Kadu', 'Computer Engineering', 'TE');
+
+insert into student1 values(4, 'Aarti Jagtap', 'Computer Engineering', 'TE');
+
+insert into student1 values(5, 'Akanksha Ghule', 'Computer Engineering', 'TE');
+
+insert into student1 values(6, 'Manas Kharde', 'Computer Engineering', 'TE');
+
+insert into student1 values(7, 'Kedarnath Gavandi', 'Computer Engineering', 'TE');
+
+select * from student1;
+
+truncate table student1;
+
+delete from student1;
+
+drop table student1;
+
+delete from student1 where rollno = 2;
+
+update student1 set course='IT' where rollno = 2;
+
+
+

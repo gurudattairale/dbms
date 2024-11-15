@@ -1,0 +1,385 @@
+
+[comp@localhost ~]$ su
+Password: 
+
+[root@localhost comp]# mongo
+MongoDB shell version: 2.4.6
+connecting to: test
+
+> db
+test
+
+> show dbs
+local	0.078125GB
+mydb	0.203125GB
+student	0.203125GB
+test	(empty)
+
+> use mycollection1 
+switched to db mycollection1
+
+
+> db.dropDatabase()
+{ "dropped" : "mycollection1", "ok" : 1 }
+
+
+> use mc1
+switched to db mc1
+
+> db
+mc1
+
+> db.createCollection("Employee")
+{ "ok" : 1 }
+
+
+
+> db.Employee.insert({empno:1, ename:"Chature Priyanka", eaddress:"Shrirampur"})
+
+> db.Employee.find()
+{ "_id" : ObjectId("6364aeef8ca0869d4cfe988d"), "empno" : 1, "ename" : "Chature Priyanka", "eaddress" : "Shrirampur" }
+
+> db.Employee.insert({empno:2, ename:"Sneha Avinash Kute", salary:300000, department:"Testing"})
+
+> db.Employee.find()
+{ "_id" : ObjectId("6364aeef8ca0869d4cfe988d"), "empno" : 1, "ename" : "Chature Priyanka", "eaddress" : "Shrirampur" }
+{ "_id" : ObjectId("6364b06e8ca0869d4cfe988e"), "empno" : 2, "ename" : "Sneha Avinash Kute", "salary" : 300000, "department" : "Testing" }
+
+> db.Employee.insert({empno:3, ename:"Warade Nisha"}, {empno:4, ename:"Kanchan Shevkar", salary: 400000})
+
+> db.Employee.find()
+{ "_id" : ObjectId("6364aeef8ca0869d4cfe988d"), "empno" : 1, "ename" : "Chature Priyanka", "eaddress" : "Shrirampur" }
+{ "_id" : ObjectId("6364b06e8ca0869d4cfe988e"), "empno" : 2, "ename" : "Sneha Avinash Kute", "salary" : 300000, "department" : "Testing" }
+{ "_id" : ObjectId("6364b1878ca0869d4cfe988f"), "empno" : 3, "ename" : "Warade Nisha" }
+
+> db.Employee.insert({empno:3, ename:"Warade Nisha", empno:4, ename:"Kanchan Shevkar", salary: 400000})
+
+> db.Employee.find()
+{ "_id" : ObjectId("6364aeef8ca0869d4cfe988d"), "empno" : 1, "ename" : "Chature Priyanka", "eaddress" : "Shrirampur" }
+{ "_id" : ObjectId("6364b06e8ca0869d4cfe988e"), "empno" : 2, "ename" : "Sneha Avinash Kute", "salary" : 300000, "department" : "Testing" }
+{ "_id" : ObjectId("6364b1878ca0869d4cfe988f"), "empno" : 3, "ename" : "Warade Nisha" }
+{ "_id" : ObjectId("6364b2198ca0869d4cfe9890"), "empno" : 4, "ename" : "Kanchan Shevkar", "salary" : 400000 }
+
+> db.Employee.find().pretty()
+{
+	"_id" : ObjectId("6364aeef8ca0869d4cfe988d"),
+	"empno" : 1,
+	"ename" : "Chature Priyanka",
+	"eaddress" : "Shrirampur"
+}
+{
+	"_id" : ObjectId("6364b06e8ca0869d4cfe988e"),
+	"empno" : 2,
+	"ename" : "Sneha Avinash Kute",
+	"salary" : 300000,
+	"department" : "Testing"
+}
+{
+	"_id" : ObjectId("6364b1878ca0869d4cfe988f"),
+	"empno" : 3,
+	"ename" : "Warade Nisha"
+}
+{
+	"_id" : ObjectId("6364b2198ca0869d4cfe9890"),
+	"empno" : 4,
+	"ename" : "Kanchan Shevkar",
+	"salary" : 400000
+}
+
+> db.Employee.insert({eno:5, ename:"Tanpure Jayant", education:["IIT Mumbai", "BTech"]})
+
+> db.Employee.find().pretty()
+{
+	"_id" : ObjectId("6364aeef8ca0869d4cfe988d"),
+	"empno" : 1,
+	"ename" : "Chature Priyanka",
+	"eaddress" : "Shrirampur"
+}
+{
+	"_id" : ObjectId("6364b06e8ca0869d4cfe988e"),
+	"empno" : 2,
+	"ename" : "Sneha Avinash Kute",
+	"salary" : 300000,
+	"department" : "Testing"
+}
+{
+	"_id" : ObjectId("6364b1878ca0869d4cfe988f"),
+	"empno" : 3,
+	"ename" : "Warade Nisha"
+}
+{
+	"_id" : ObjectId("6364b2198ca0869d4cfe9890"),
+	"empno" : 4,
+	"ename" : "Kanchan Shevkar",
+	"salary" : 400000
+}
+{
+	"_id" : ObjectId("6364b3a88ca0869d4cfe9891"),
+	"eno" : 5,
+	"ename" : "Tanpure Jayant",
+	"education" : [
+		"IIT Mumbai",
+		"BTech"
+	]
+}
+
+
+> db.Employee.insert({eno:7, name:"Dahatonde Rutuja", 
+ 
+  education:[
+  {
+ year:2022,
+   class:"TE",
+  college:"PREC, LONI"
+   },
+ {
+  year:2023,
+  class:"BE",
+   college:"PREC, loni"
+   }
+  ]})
+
+> db.Employee.find().pretty()
+{
+	"_id" : ObjectId("6364aeef8ca0869d4cfe988d"),
+	"empno" : 1,
+	"ename" : "Chature Priyanka",
+	"eaddress" : "Shrirampur"
+}
+{
+	"_id" : ObjectId("6364b06e8ca0869d4cfe988e"),
+	"empno" : 2,
+	"ename" : "Sneha Avinash Kute",
+	"salary" : 300000,
+	"department" : "Testing"
+}
+{
+	"_id" : ObjectId("6364b1878ca0869d4cfe988f"),
+	"empno" : 3,
+	"ename" : "Warade Nisha"
+}
+{
+	"_id" : ObjectId("6364b2198ca0869d4cfe9890"),
+	"empno" : 4,
+	"ename" : "Kanchan Shevkar",
+	"salary" : 400000
+}
+{
+	"_id" : ObjectId("6364b3a88ca0869d4cfe9891"),
+	"eno" : 5,
+	"ename" : "Tanpure Jayant",
+	"education" : [
+		"IIT Mumbai",
+		"BTech"
+	]
+}
+{
+	"_id" : ObjectId("6364b4808ca0869d4cfe9892"),
+	"eno" : 7,
+	"name" : "Dahatonde Rutuja",
+	"education" : [
+		{
+			"year" : 2022,
+			"class" : "TE",
+			"college" : "PREC, LONI"
+		},
+		{
+			"year" : 2023,
+			"class" : "BE",
+			"college" : "PREC, loni"
+		}
+	]
+}
+
+> db.Employee.find({eno:7})
+{ "_id" : ObjectId("6364b4808ca0869d4cfe9892"), "eno" : 7, "name" : "Dahatonde Rutuja", "education" : [ 	{ 	"year" : 2022, 	"class" : "TE", 	"college" : "PREC, LONI" }, 	{ 	"year" : 2023, 	"class" : "BE", 	"college" : "PREC, loni" } ] }
+
+> db.Employee.find({eno:7}).pretty()
+{
+	"_id" : ObjectId("6364b4808ca0869d4cfe9892"),
+	"eno" : 7,
+	"name" : "Dahatonde Rutuja",
+	"education" : [
+		{
+			"year" : 2022,
+			"class" : "TE",
+			"college" : "PREC, LONI"
+		},
+		{
+			"year" : 2023,
+			"class" : "BE",
+			"college" : "PREC, loni"
+		}
+	]
+}
+
+> db.Employee.update({eno:7}, {"$set":{"name":"Apurva Jadhav"}})
+
+> db.Employee.find({eno:7}).pretty()
+{
+	"_id" : ObjectId("6364b4808ca0869d4cfe9892"),
+	"education" : [
+		{
+			"year" : 2022,
+			"class" : "TE",
+			"college" : "PREC, LONI"
+		},
+		{
+			"year" : 2023,
+			"class" : "BE",
+			"college" : "PREC, loni"
+		}
+	],
+	"eno" : 7,
+	"name" : "Apurva Jadhav"
+}
+
+> db.dropDatabase()
+{ "dropped" : "mc1", "ok" : 1 }
+
+> db.Employee.find({eno:7}).pretty()
+
+
+> show dbs
+local	0.078125GB
+mc1	(empty)
+mydb	0.203125GB
+student	0.203125GB
+test	(empty)
+
+> use mydb
+switched to db mydb
+
+
+> db.dropDatabase()
+{ "dropped" : "mydb", "ok" : 1 }
+
+> show dbs
+local	0.078125GB
+mc1	(empty)
+student	0.203125GB
+test	(empty)
+
+> use new
+switched to db new
+
+> db
+new
+
+> db.stud.insert({rollno:2,name:'pallavi',city:'rahuri'});
+> db.stud.insert({rollno:3,name:'hema',city:'ashwavi'});
+> db.stud.insert({rollno:4,name:'pallavi',city:'rahata'});
+> db.stud.insert({rollno:5,name:'dhano',city:'pune'});
+> db.stud.insert({rollno:6,name:'sai',city:'mumbai'});
+> db.stud.insert({rollno:7,name:'om',city:'nagar'});
+> db.stud.insert({rollno:8,name:'pooja123',city:'goa'});
+> db.stud.insert({rollno:9,name:'jay',city:'USA'});
+> db.stud.insert({rollno:10,name:'jaydev',city:'rahuri'});
+
+> db.stud.find().pretty()
+{
+	"_id" : ObjectId("6364b7d98ca0869d4cfe9893"),
+	"rollno" : 2,
+	"name" : "pallavi",
+	"city" : "rahuri"
+}
+{
+	"_id" : ObjectId("6364b7d98ca0869d4cfe9894"),
+	"rollno" : 3,
+	"name" : "hema",
+	"city" : "ashwavi"
+}
+{
+	"_id" : ObjectId("6364b7d98ca0869d4cfe9895"),
+	"rollno" : 4,
+	"name" : "pallavi",
+	"city" : "rahata"
+}
+{
+	"_id" : ObjectId("6364b7d98ca0869d4cfe9896"),
+	"rollno" : 5,
+	"name" : "dhano",
+	"city" : "pune"
+}
+{
+	"_id" : ObjectId("6364b7d98ca0869d4cfe9897"),
+	"rollno" : 6,
+	"name" : "sai",
+	"city" : "mumbai"
+}
+{
+	"_id" : ObjectId("6364b7d98ca0869d4cfe9898"),
+	"rollno" : 7,
+	"name" : "om",
+	"city" : "nagar"
+}
+{
+	"_id" : ObjectId("6364b7d98ca0869d4cfe9899"),
+	"rollno" : 8,
+	"name" : "pooja123",
+	"city" : "goa"
+}
+{
+	"_id" : ObjectId("6364b7d98ca0869d4cfe989a"),
+	"rollno" : 9,
+	"name" : "jay",
+	"city" : "USA"
+}
+{
+	"_id" : ObjectId("6364b7d98ca0869d4cfe989b"),
+	"rollno" : 10,
+	"name" : "jaydev",
+	"city" : "rahuri"
+}
+
+> db.stud.remove({rollno:10})
+
+> db.stud.find().pretty()
+{
+	"_id" : ObjectId("6364b7d98ca0869d4cfe9893"),
+	"rollno" : 2,
+	"name" : "pallavi",
+	"city" : "rahuri"
+}
+{
+	"_id" : ObjectId("6364b7d98ca0869d4cfe9894"),
+	"rollno" : 3,
+	"name" : "hema",
+	"city" : "ashwavi"
+}
+{
+	"_id" : ObjectId("6364b7d98ca0869d4cfe9895"),
+	"rollno" : 4,
+	"name" : "pallavi",
+	"city" : "rahata"
+}
+{
+	"_id" : ObjectId("6364b7d98ca0869d4cfe9896"),
+	"rollno" : 5,
+	"name" : "dhano",
+	"city" : "pune"
+}
+{
+	"_id" : ObjectId("6364b7d98ca0869d4cfe9897"),
+	"rollno" : 6,
+	"name" : "sai",
+	"city" : "mumbai"
+}
+{
+	"_id" : ObjectId("6364b7d98ca0869d4cfe9898"),
+	"rollno" : 7,
+	"name" : "om",
+	"city" : "nagar"
+}
+{
+	"_id" : ObjectId("6364b7d98ca0869d4cfe9899"),
+	"rollno" : 8,
+	"name" : "pooja123",
+	"city" : "goa"
+}
+{
+	"_id" : ObjectId("6364b7d98ca0869d4cfe989a"),
+	"rollno" : 9,
+	"name" : "jay",
+	"city" : "USA"
+}

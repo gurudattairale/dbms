@@ -1,0 +1,72 @@
+[comp@localhost ~]$ su
+
+[root@localhost comp]# systemctl start mongod
+
+[root@localhost comp]# mongo
+
+> db
+
+>  show dbs
+
+> use mydb
+
+> show dbs
+
+1) To drop Database:-
+
+> db.dropDatabase()
+
+2) To create Collection:-
+
+> db.createCollection("Student");
+
+> db
+
+> use Student
+
+> db.Student.insert({rollno:1,name:"pooja",city:"loni"});
+
+> db.Student.find()
+
+> db.Student.insert({rollno:2,firstname:"Pallavi",middlename:"Sunil", lastname:"Lagad", rollno:3, firstname:"Divya",middlename:"Pralhad", lastname:"Dokhe"})
+
+> db.Student.find()
+
+> db.Student.insert({rollno:"4", name:"Prajakta Dighe",
+course:{ 
+coursename:"Computer Engineering",
+class:"T.E."},
+address:{
+city:"Loni",
+state:"Maharashtra"}})
+
+3) To find data in document:-
+
+> db.Student.find()
+
+4) To find specific data in a document:-
+
+> db.Student.find({"rollno":2})
+
+5) To update specific data in the document:-
+
+> db.Student.update({"rollno":1}, {"$set":{"name":"Puja"}})
+
+6) To drop Collection:-
+
+> db.Student.drop()
+
+6) To delete Collection:-
+> db.dropDatabase(student)
+
+db.stud.insert({rollno:2,name:'pallavi',city:'rahuri'});
+db.stud.insert({rollno:3,name:'hema',city:'ashwavi'});
+db.stud.insert({rollno:4,name:'pallavi',city:'rahata'});
+db.stud.insert({rollno:5,name:'dhano',city:'pune'});
+db.stud.insert({rollno:6,name:'sai',city:'mumbai'});
+db.stud.insert({rollno:7,name:'om',city:'nagar'});
+db.stud.insert({rollno:8,name:'pooja123',city:'goa'});
+db.stud.insert({rollno:9,name:'jay',city:'USA'});
+db.stud.insert({rollno:10,name:'jaydev',city:'rahuri'});
+
+db.stud.find().pretty()
